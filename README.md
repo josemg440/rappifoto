@@ -43,3 +43,22 @@ La imagen se guarda en el Escritorio con el formato:
 ```
 
 Si no se detecta ningun numero, se usa `sin_numero`.
+
+## Actualizar el codigo (git)
+
+Si ya hiciste cambios y quieres subirlos a tu repositorio:
+
+```bash
+git status -sb
+git add .
+git commit -m "Describe tu cambio"
+git push
+```
+
+Para bajar los cambios en la carpeta que descargaste en tu Mac (tu clon local):
+
+```bash
+git pull
+```
+
+Si trabajas en una rama distinta, usa `git push -u origin <tu-rama>` la primera vez, y luego `git pull` desde esa misma rama.
