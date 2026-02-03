@@ -21,11 +21,14 @@ codex/create-photo-capture-application-in-python-7k87yc
     return "sin_numero"
 
 
+def draw_roi(frame, color=(0, 255, 255)) -> tuple[int, int, int, int]:
+    height, width = frame.shape[:2]
+    roi_width = width // 3
+    roi_height = min(height - 40, 2 * (height // 3))
 def draw_roi(frame, color=(0, 0, 255)) -> tuple[int, int, int, int]:
     height, width = frame.shape[:2]
     roi_width = width // 3
     roi_height = min(height - 40, 2 * (height // 3))
-=======
     config = "--psm 6 -c tessedit_char_whitelist=0123456789"
     text = pytesseract.image_to_string(image, config=config)
     digits = re.findall(r"\d+", text)
@@ -37,7 +40,6 @@ def draw_roi(frame, color=(0, 255, 255)) -> tuple[int, int, int, int]:
     roi_width = width // 3
 codex/create-photo-capture-application-in-python-8v3xzd
     roi_height = min(height - 40, 2 * (height // 3))
-=======
     roi_height = height // 3
  main
 main
@@ -84,12 +86,11 @@ def main() -> None:
             output_path = build_filename(number_text)
             cv2.imwrite(str(output_path), frame)
             print(f"Imagen guardada en: {output_path}")
+            continue
 codex/create-photo-capture-application-in-python-7k87yc
             continue
-=======
 codex/create-photo-capture-application-in-python-8v3xzd
             continue
-=======
             break
 main
 main
