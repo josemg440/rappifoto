@@ -12,6 +12,7 @@ def get_desktop_path() -> Path:
 
 
 def extract_number(image) -> str:
+codex/create-photo-capture-application-in-python-7k87yc
     config = "--psm 6"
     text = pytesseract.image_to_string(image, config=config)
     match = re.search(r"\bID\s*(\d{10})\b", text, re.IGNORECASE)
@@ -24,6 +25,22 @@ def draw_roi(frame, color=(0, 0, 255)) -> tuple[int, int, int, int]:
     height, width = frame.shape[:2]
     roi_width = width // 3
     roi_height = min(height - 40, 2 * (height // 3))
+=======
+    config = "--psm 6 -c tessedit_char_whitelist=0123456789"
+    text = pytesseract.image_to_string(image, config=config)
+    digits = re.findall(r"\d+", text)
+    return "_".join(digits) if digits else "sin_numero"
+
+
+def draw_roi(frame, color=(0, 255, 255)) -> tuple[int, int, int, int]:
+    height, width = frame.shape[:2]
+    roi_width = width // 3
+codex/create-photo-capture-application-in-python-8v3xzd
+    roi_height = min(height - 40, 2 * (height // 3))
+=======
+    roi_height = height // 3
+ main
+main
     x1 = width - roi_width - 20
     y1 = (height - roi_height) // 2
     x2 = width - 20
@@ -67,7 +84,15 @@ def main() -> None:
             output_path = build_filename(number_text)
             cv2.imwrite(str(output_path), frame)
             print(f"Imagen guardada en: {output_path}")
+codex/create-photo-capture-application-in-python-7k87yc
             continue
+=======
+codex/create-photo-capture-application-in-python-8v3xzd
+            continue
+=======
+            break
+main
+main
 
     cap.release()
     cv2.destroyAllWindows()
