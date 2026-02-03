@@ -34,6 +34,8 @@ Controles:
 - Presiona **ESPACIO** para tomar la foto.
 - Presiona **Q** para salir.
 
+Al abrir la camara se muestra un recuadro con borde amarillo en el tercio derecho de la ventana. Coloca el papel con el numero dentro de ese recuadro para mejorar la lectura.
+
 La imagen se guarda en el Escritorio con el formato:
 
 ```

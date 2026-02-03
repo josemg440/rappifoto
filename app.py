@@ -18,6 +18,23 @@ def extract_number(image) -> str:
     return "_".join(digits) if digits else "sin_numero"
 
 
+def draw_roi(frame, color=(0, 255, 255)) -> tuple[int, int, int, int]:
+    height, width = frame.shape[:2]
+    roi_width = width // 3
+    roi_height = height // 3
+    x1 = width - roi_width - 20
+    y1 = (height - roi_height) // 2
+    x2 = width - 20
+    y2 = y1 + roi_height
+    cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
+    return x1, y1, x2, y2
+
+
+def crop_to_roi(frame, roi: tuple[int, int, int, int]):
+    x1, y1, x2, y2 = roi
+    return frame[y1:y2, x1:x2]
+
+
 def build_filename(number_text: str) -> Path:
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"{number_text}_{timestamp}.jpg"
@@ -36,13 +53,15 @@ def main() -> None:
             print("No se pudo leer la imagen de la camara.")
             break
 
+        roi = draw_roi(frame)
         cv2.imshow("Camara", frame)
         key = cv2.waitKey(1) & 0xFF
 
         if key == ord("q"):
             break
         if key == ord(" "):
-            number_text = extract_number(frame)
+            roi_frame = crop_to_roi(frame, roi)
+            number_text = extract_number(roi_frame)
             output_path = build_filename(number_text)
             cv2.imwrite(str(output_path), frame)
             print(f"Imagen guardada en: {output_path}")
