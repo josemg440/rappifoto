@@ -20,10 +20,28 @@ def extract_number(image) -> str:
     return "sin_numero"
 
 
-def draw_roi(frame, color=(255, 255, 255)) -> tuple[int, int, int, int]:
+def draw_roi(frame, color=(0, 255, 255)) -> tuple[int, int, int, int]:
     height, width = frame.shape[:2]
     roi_width = width // 3
     roi_height = min(height - 40, 2 * (height // 3))
+def draw_roi(frame, color=(0, 0, 255)) -> tuple[int, int, int, int]:
+    height, width = frame.shape[:2]
+    roi_width = width // 3
+    roi_height = min(height - 40, 2 * (height // 3))
+    config = "--psm 6 -c tessedit_char_whitelist=0123456789"
+    text = pytesseract.image_to_string(image, config=config)
+    digits = re.findall(r"\d+", text)
+    return "_".join(digits) if digits else "sin_numero"
+
+
+def draw_roi(frame, color=(0, 255, 255)) -> tuple[int, int, int, int]:
+    height, width = frame.shape[:2]
+    roi_width = width // 3
+codex/create-photo-capture-application-in-python-8v3xzd
+    roi_height = min(height - 40, 2 * (height // 3))
+    roi_height = height // 3
+ main
+main
     x1 = width - roi_width - 20
     y1 = (height - roi_height) // 2
     x2 = width - 20
