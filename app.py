@@ -12,7 +12,6 @@ def get_desktop_path() -> Path:
 
 
 def extract_number(image) -> str:
-codex/create-photo-capture-application-in-python-7k87yc
     config = "--psm 6"
     text = pytesseract.image_to_string(image, config=config)
     match = re.search(r"\bID\s*(\d{10})\b", text, re.IGNORECASE)
@@ -87,13 +86,6 @@ def main() -> None:
             cv2.imwrite(str(output_path), frame)
             print(f"Imagen guardada en: {output_path}")
             continue
-codex/create-photo-capture-application-in-python-7k87yc
-            continue
-codex/create-photo-capture-application-in-python-8v3xzd
-            continue
-            break
-main
-main
 
     cap.release()
     cv2.destroyAllWindows()
